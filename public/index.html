@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+
+
+  <div id="app">
+
+
+    <div id="login" v-if="!login">
+      <h3> Welcome, please enter or create your username </h3>
+      <input v-model="user" placeholder="username" id = "loginInput">
+      <button v-on:click="loginuser" id = "loginButton">Login/Register</button>
+    </div>
+
+    <div class="instructions" @click = "updateInstructions" v-if="login">
+      <h1> {{instruction}} <h1>
+      </div>
+
+      <div id="load" v-if="loading">
+        <h1> LOADING... </h1>
+      </div>
+
+      <div id="load" v-if="gameover">
+        <h1> YOU WIN, YOUR GAME HAS BEEN DELETED </h1>
+      </div>
+
+
+      <div class="formater" v-if="gameStarted">
+
+        <div id="scorebar">
+          <h3> moves: {{moves}} </h3>
+        </div>
+
+        <div id="forest" class ="main" >
+          <div v-for="item in textboard" id="text">
+            <h3>{{item}}</h3>
+          </div>
+        </div>
+
+        <div id="userInteration">
+          <input v-on:keyup.enter="submit" v-model="message" id = "inputBox" placeholder="enter one word response">
+          <button v-on:click="displayHint" id = "hint">Hint</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./script.js"> </script>
+  </html>
